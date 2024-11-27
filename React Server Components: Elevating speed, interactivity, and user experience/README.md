@@ -6,7 +6,26 @@
 - 서버 컴포넌트를 사용하여 데이터를 비동기적으로 가져오고, 서스펜스를 활용하여 로딩 상태를 처리하고, URL을 단일 출처로 사용하여 애플리케이션 상태를 유지하는 방법
 - React 19의 새 기능을 사용하여 캐싱, 낙관적 업데이트, 데이터를 서버 컴포넌트에 직접 가져오는 방법
 
-### 1. 소개: React Server Components
+### Intro
 - React 서버 컴포넌트란?: 서버에서만 실행되는 컴포넌트로, 클라이언트에 JavaScript를 전송하지 않아 번들 크기를 줄이고 성능을 향상시킵니다.
 - 서버 컴포넌트의 장점: 비동기 데이터 가져오기, 백엔드 리소스 직접 액세스, 성능 향상
-- 데모 애플리케이션 소개: 프로젝트 작업 관리 데모 애플리케이션을 사용하여 서버 컴포넌트의 기능과 이점을 설명합니다. (Next.js, Prisma ORM, Azure SQL 데이터베이스, Tailwind CSS 사용)
+- 데모 애플리케이션 소개: '프로젝트 작업 관리' 데모 웹페이지를 통해 서버 컴포넌트의 기능과 이점을 설명합니다.
+- 데모 기술스택: Next.js, Prisma ORM, Azure SQL 데이터베이스, Tailwind CSS 사용
+
+<img width="1424" alt="Screenshot 2024-11-27 at 8 45 30 PM" src="https://github.com/user-attachments/assets/65b75967-d80d-4c65-9618-318ae0cd45fc">
+데모 앱을 Light House 에 돌려보았을 때, 초기로딩은 매우 느리고 (데모를 위해 의도적으로 데이터 페칭 속도를 늦췄다), First Contentful Paint 3.1s 로 느리지만, JS코드가 이 컴포넌트엔 없기 때문에 Total Blocking Time 은 0이며, 모든 페이지가 한번에 그려지기 때문에 Layout Shift 도 0이다.
+
+전반적인 성능 점수는 나쁘지 않지만 UX가 좋지않은 상태이다. 이제 이 데모 웹을 기반으로 개선해보자.
+
+### 1. Suspense 사용하기
+- 다른 탭으로 이동할 때, 해당 탭의 서버 컴포넌트가 렌더링 될 때까지 기다려야하므로 대기시간이 꽤 길다.
+- 대기 상태를 사용자에게 표시해주기 위해 `<Suspense/>` 로 감싸서 Skeleton 을 제공해준다.
+- 기존에는 layout 에서 모든 데이터를 페칭하고 있었는데, 각 컴포넌트에서 필요한 데이터를 페칭하도록 분리해주고, 각각을 Suspense 로 감쌌다.
+
+<img width="472" alt="Screenshot 2024-11-27 at 9 00 46 PM" src="https://github.com/user-attachments/assets/ddab4791-05cf-4f03-8539-6df746f288e6">
+
+### 2. `useTransition()` 사용하기
+- useTransition 은 상태변화를 일으키는 함수의 우선순위를 낮추어 실행시키고, 실행될 때까지 isPending 을 통해 boolean 값으로 상태변화 지연 여부를 알려주는 훅이다.
+- startTransition 은 상태변화를 일으키는 콜백 함수를 받고, isPending 은 상태변화 지연 여부를 가진다.
+- 이 데모에서는 검색어 입력시 url의 search param을 업데이트하여 새로운 데이터를 페칭해오는 구조이므로, search param을 업데이트하는 과정을 `startTransition` 으로 감싸고, `isPending` 값을 사용하여 route 를 업데이트하는동안에 검색어 입력란에 로딩 스핀을 노출해준다.
+- [useTransition 한글 문서](https://ko.react.dev/reference/react/useTransition)
