@@ -29,3 +29,12 @@
 - startTransition 은 상태변화를 일으키는 콜백 함수를 받고, isPending 은 상태변화 지연 여부를 가진다.
 - 이 데모에서는 검색어 입력시 url의 search param을 업데이트하여 새로운 데이터를 페칭해오는 구조이므로, search param을 업데이트하는 과정을 `startTransition` 으로 감싸고, `isPending` 값을 사용하여 route 를 업데이트하는동안에 검색어 입력란에 로딩 스핀을 노출해준다.
 - [useTransition 한글 문서](https://ko.react.dev/reference/react/useTransition)
+
+### 3. `useOptimistic`
+- 비동기 작업이 진행 중일 때 다른 상태를 보여줄 수 있게 해주는 React Hook
+- [useOptimistic 한글 문서](https://ko.react.dev/reference/react/useOptimistic#use)
+  - 인자로 주어진 일부 상태를 받아, 네트워크 요청과 같은 비동기 작업 기간 동안 달라질 수 있는 그 상태의 복사본을 반환합니다.
+  - 현재 상태와 작업의 입력을 취하는 함수를 제공하고, 작업이 대기 중일 때 사용할 낙관적인 상태를 반환합니다.
+  - 이 상태는 “낙관적” 상태라고 불리는데, 실제로 작업을 완료하는 데 시간이 걸리더라도 사용자에게 즉시 작업의 결과를 표시하기 위해 일반적으로 사용됩니다.
+- 이 데모에서는, 유저가 카테고리 리스트에서 새로운 카테고리를 선택 또는 해제할 때, 실제 데이터를 페치해올 때까지 시간이 소요되므로 그 시간동안 낙관접 업데이트를 통해 유저에게 즉각적인 피드백을 주도록 개선했습니다.
+<img width="714" alt="Screenshot 2024-12-03 at 9 36 28 PM" src="https://github.com/user-attachments/assets/ce8e7cf3-7fd7-4f6f-8a5e-5550d56ae19c">
