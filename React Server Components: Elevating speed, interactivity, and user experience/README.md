@@ -30,7 +30,7 @@
 - 이 데모에서는 검색어 입력시 url의 search param을 업데이트하여 새로운 데이터를 페칭해오는 구조이므로, search param을 업데이트하는 과정을 `startTransition` 으로 감싸고, `isPending` 값을 사용하여 route 를 업데이트하는동안에 검색어 입력란에 로딩 스핀을 노출해준다.
 - [useTransition 한글 문서](https://ko.react.dev/reference/react/useTransition)
 
-### 3. `useOptimistic`
+### 3. `useOptimistic` 사용하기 
 - 비동기 작업이 진행 중일 때 다른 상태를 보여줄 수 있게 해주는 React Hook
 - [useOptimistic 한글 문서](https://ko.react.dev/reference/react/useOptimistic#use)
   - 인자로 주어진 일부 상태를 받아, 네트워크 요청과 같은 비동기 작업 기간 동안 달라질 수 있는 그 상태의 복사본을 반환합니다.
