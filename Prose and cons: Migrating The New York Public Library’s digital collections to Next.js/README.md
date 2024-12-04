@@ -29,10 +29,9 @@
 <img width="2093" alt="스크린샷 2024-11-18 오후 8 27 32" src="https://github.com/user-attachments/assets/c611a13f-1412-4777-bc92-d44ad2502ee4">
 
 ### 6. Next.js 에서 얻은 다른 이점들 [(11:14-12:24)](https://youtu.be/esOYhqevuqw?si=qr_GC_Vnf1Mkf1IB&t=674)
-- 서버 컴포넌트 활용의 어려움에도 불구하고 앱 라우터를 도입한 이유를 설명합니다.
-- 라우터 캐싱: 범용 header/footer 를 가지고 있어서, 페이지 로드 시간을 단축하는데 큰 도움이 되었다.
-- Error Boundary: 모든 오류를 한곳에서 처리하여 편리하게 사용했다.
-- Loading, Suspense: Next.js 14 버전에서 훨씬 명확해져서 쉽게 사용했다.
+- **라우터 캐싱**: 범용 header, footer 를 가지고 있어서, 페이지 로드 시간을 단축하는데 큰 도움이 되었다.
+- **Error Boundary**: 모든 오류를 한곳에서 처리하여 편리하게 사용했다.
+- **Loading, Suspense**: 데이터를 페칭해오는 동안 사용자에게 스켈레톤을 노출시켜 의미있는 UI를 제공했다.
 
 ### 7. Vercel Preview를 통한 협업 및 접근성 향상 [(12:24-14:08)](https://youtu.be/esOYhqevuqw?si=G6h018pSmzQF1Goe&t=744)
 - Vercel Preview를 통해 반복적인 개발 속도를 높이고 의사 결정 과정을 10배 단축하여 효율성을 극대화했다.
