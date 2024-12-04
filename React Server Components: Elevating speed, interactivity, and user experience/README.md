@@ -13,9 +13,9 @@
 - 데모 기술스택: Next.js, Prisma ORM, Azure SQL 데이터베이스, Tailwind CSS 사용
 
 <img width="1424" alt="Screenshot 2024-11-27 at 8 45 30 PM" src="https://github.com/user-attachments/assets/65b75967-d80d-4c65-9618-318ae0cd45fc">
-데모 앱을 Light House 에 돌려보았을 때, 초기로딩은 매우 느리고 (데모를 위해 의도적으로 데이터 페칭 속도를 늦췄다), First Contentful Paint 3.1s 로 느리지만, JS코드가 이 컴포넌트엔 없기 때문에 Total Blocking Time 은 0이며, 모든 페이지가 한번에 그려지기 때문에 Layout Shift 도 0이다.
 
-전반적인 성능 점수는 나쁘지 않지만 UX가 좋지않은 상태이다. 이제 이 데모 웹을 기반으로 개선해보자.
+- 데모 앱을 Light House 에 돌려보았을 때, 초기로딩은 매우 느리고, First Contentful Paint 3.1s 로 느리지만, JS코드가 이 컴포넌트엔 없기 때문에 Total Blocking Time 은 0이며, 모든 페이지가 한번에 그려지기 때문에 Layout Shift 도 0이다.
+- 전반적인 성능 점수는 나쁘지 않지만 UX가 좋지않은 상태이다. 이제 이 데모 웹을 기반으로 개선해보자.
 
 ### 1. Suspense 사용하기
 - 다른 탭으로 이동할 때, 해당 탭의 서버 컴포넌트가 렌더링 될 때까지 기다려야하므로 대기시간이 꽤 길다.
