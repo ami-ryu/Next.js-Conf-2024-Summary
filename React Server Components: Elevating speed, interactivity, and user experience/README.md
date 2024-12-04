@@ -39,7 +39,10 @@
 - 이 데모에서는, 유저가 카테고리 리스트에서 새로운 카테고리를 선택 또는 해제할 때, 실제 데이터를 페치해올 때까지 시간이 소요되므로 그 시간동안 낙관적 업데이트를 통해 유저에게 즉각적인 피드백을 주도록 개선했습니다.
 <img width="714" alt="Screenshot 2024-12-03 at 9 36 28 PM" src="https://github.com/user-attachments/assets/ce8e7cf3-7fd7-4f6f-8a5e-5550d56ae19c">
 
-### 4. `cache` 사용하기 [18:12-](https://youtu.be/CvAySC5ex9c?feature=shared&t=1092)
+### 4. `cache` 사용하기
 - 데모 앱에서 카테고리 리스트를 페칭해오는 부분이 2번 중복되어서, 이 함수를 react cache 로 감싸주었다.
 - cache 적용 후, 페이지 로드 시간이 2.6s -> 2.1s 로 단축되었다.
 <img width="334" alt="스크린샷 2024-12-04 오후 1 40 21" src="https://github.com/user-attachments/assets/8f32b9f2-a753-4274-998f-d27bb82b9e8c">
+
+### 5. `staleTime` 사용하기
+- [next.js staleTime 문서](https://nextjs.org/docs/app/api-reference/next-config-js/staleTimes)
