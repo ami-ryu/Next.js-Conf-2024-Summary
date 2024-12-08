@@ -5,3 +5,4 @@
 
 ## Conference 영상
 - [Vercel Youtube](https://www.youtube.com/@VercelHQ/videos)
+- [Vercel 공식 홈페이지](https://nextjs.org/conf)
