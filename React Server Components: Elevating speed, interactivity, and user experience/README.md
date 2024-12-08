@@ -3,14 +3,15 @@
 
 ### 3줄 요약
 - React Server Components를 사용하여 웹 성능과 사용자 경험 향상시키기
-- 서버 컴포넌트를 사용하여 데이터 비동기적으로 가져오기 / Suspense 활용하여 로딩 상태 처리하기
+  - 데이터 비동기적으로 가져오기 / Suspense 활용하여 로딩 상태 처리하기
 - React 19의 새 기능 (useTransition, useOptimistic, cache)
+- Next.js 실험적 기능 (staleTime, Partial Prerendering)
 
 ### Intro
 - React 서버 컴포넌트란?: 서버에서만 실행되는 컴포넌트로, 클라이언트에 JavaScript를 전송하지 않아 번들 크기를 줄이고 성능을 향상시킵니다.
 - 서버 컴포넌트의 장점: 비동기 데이터 가져오기, 백엔드 리소스 직접 액세스, 성능 향상
 - 데모 애플리케이션 소개: '프로젝트 작업 관리' 데모 웹페이지를 통해 서버 컴포넌트의 기능과 이점을 설명합니다.
-- 데모 기술스택: Next.js, Prisma ORM, Azure SQL 데이터베이스, Tailwind CSS 사용
+  - 기술스택: Next.js, Prisma ORM, Azure SQL 데이터베이스, Tailwind CSS 사용
 
 <img width="1424" alt="Screenshot 2024-11-27 at 8 45 30 PM" src="https://github.com/user-attachments/assets/65b75967-d80d-4c65-9618-318ae0cd45fc">
 
@@ -60,3 +61,45 @@ const nextConfig = {
   },
 }
 ```
+
+### 6. `Partial Prerendering` 사용하기
+- Next.js 15에서 도입된 실험적 기능인 '부분 사전 렌더링(Partial Prerendering, PPR)'은 정적 콘텐츠와 동적 콘텐츠를 동일한 경로에서 결합하여 최적의 사용자 경험을 제공하는 기술입니다.
+- 이를 통해 페이지의 정적 부분은 미리 렌더링되어 빠르게 표시되고, 동적 부분은 서버에서 데이터를 가져와 점진적으로 렌더링됩니다.
+- [PPR 공식문서](https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering)
+
+PPR 단계적으로 도입하기
+```jsx
+/*
+next.config.js 파일에서 ppr 옵션을 incremental로 설정
+*/
+
+module.exports = {
+  experimental: {
+    ppr: 'incremental',
+  },
+};
+```
+```jsx
+/*
+- experimental_ppr 설정을 통해 PPR을 적용합니다.
+- 동적 콘텐츠를 처리할 때 React의 Suspense 컴포넌트를 활용하여 로딩 상태를 관리합니다.
+*/
+
+export const experimental_ppr = true;
+
+export default function Page() {
+  return (
+    <>
+      <StaticComponent />
+      <Suspense fallback={<Loading />}>
+        <DynamicComponent />
+      </Suspense>
+    </>
+  );
+}
+```
+
+### 개선 결과
+- Performance: 100 score
+- First contentful paint: 3.1s → 0.2s
+<img width="434" alt="Screenshot 2024-12-08 at 5 10 18 PM" src="https://github.com/user-attachments/assets/0022047a-0591-4122-a076-c835344c0909">
