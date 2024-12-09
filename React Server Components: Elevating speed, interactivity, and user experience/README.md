@@ -16,6 +16,8 @@
 <img width="1424" alt="Screenshot 2024-11-27 at 8 45 30 PM" src="https://github.com/user-attachments/assets/65b75967-d80d-4c65-9618-318ae0cd45fc">
 
 - 데모 앱을 Light House 에 돌려보았을 때, 초기로딩은 매우 느리고, First Contentful Paint 3.1s 로 느리지만, JS코드가 이 컴포넌트엔 없기 때문에 Total Blocking Time 은 0이며, 모든 페이지가 한번에 그려지기 때문에 Layout Shift 도 0이다.
+  
+   > First Contentful Paint: 브라우저가 첫 번째로 텍스트나 이미지, 비디오, 캔버스 등 의미 있는 컨텐츠를 화면에 렌더링하는 순간까지 걸린 시간
 - 전반적인 성능 점수는 나쁘지 않지만 UX가 좋지않은 상태이다. 이제 이 데모 웹을 기반으로 개선해보자.
 
 ### 1. Suspense 사용하기
@@ -25,19 +27,23 @@
 
 <img width="472" alt="Screenshot 2024-11-27 at 9 00 46 PM" src="https://github.com/user-attachments/assets/ddab4791-05cf-4f03-8539-6df746f288e6">
 
-### 2. `useTransition()` 사용하기
+### 2. `useTransition()` 사용하기 - React 18
 - useTransition 은 상태변화를 일으키는 함수의 우선순위를 낮추어 실행시키고, 실행될 때까지 isPending 을 통해 boolean 값으로 상태변화 지연 여부를 알려주는 훅이다.
-- startTransition 은 상태변화를 일으키는 콜백 함수를 받고, isPending 은 상태변화 지연 여부를 가진다.
-- 이 데모에서는 검색어 입력시 url의 search param을 업데이트하여 새로운 데이터를 페칭해오는 구조이므로, search param을 업데이트하는 과정을 `startTransition` 으로 감싸고, `isPending` 값을 사용하여 route 를 업데이트하는동안에 검색어 입력란에 로딩 스핀을 노출해준다.
 - [useTransition 한글 문서](https://ko.react.dev/reference/react/useTransition)
 
-### 3. `useOptimistic` 사용하기 
+- 이 데모에서는 검색어 입력시 url의 search param을 업데이트하여 새로운 데이터를 페칭해오는 구조이므로, search param을 업데이트하는 과정을 `startTransition` 으로 감싸고, `isPending` 값을 사용하여 route 를 업데이트하는동안에 검색어 입력란에 로딩 스핀을 노출해준다.
+
+### 3. `useOptimistic` 사용하기 - Reat 19
 - 비동기 작업이 진행 중일 때 다른 상태를 보여줄 수 있게 해주는 React Hook
 - [useOptimistic 한글 문서](https://ko.react.dev/reference/react/useOptimistic#use)
   - 인자로 일부 상태를 받아, 비동기 작업동안 달라질 수 있는 그 상태의 복사본을 반환합니다.
   - 이 상태는 “낙관적” 상태라고 불리는데, 실제로 작업을 완료하는 데 시간이 걸리더라도 사용자에게 즉시 작업의 결과를 표시하기 위해 일반적으로 사용됩니다.
 - 이 데모에서는, 유저가 카테고리 리스트에서 새로운 카테고리를 선택 또는 해제할 때, 실제 데이터를 페치해올 때까지 시간이 소요되므로 그 시간동안 낙관적 업데이트를 통해 유저에게 즉각적인 피드백을 주도록 개선했습니다.
 <img width="714" alt="Screenshot 2024-12-03 at 9 36 28 PM" src="https://github.com/user-attachments/assets/ce8e7cf3-7fd7-4f6f-8a5e-5550d56ae19c">
+
+> 요약
+> - useTransition: UI 렌더링 우선순위 관리 및 성능 최적화 용도
+> - useOptimistic: 사용성 향상을 위해 낙관적 UI 업데이트 용도
 
 ### 4. `cache` 사용하기
 - [cache 한글 문서](https://ko.react.dev/reference/react/cache)
