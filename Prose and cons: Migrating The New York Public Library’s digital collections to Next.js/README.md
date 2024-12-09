@@ -19,12 +19,19 @@
 
 ### 4. Next.js 마이그레이션 단계 [(8:52 - 10:00)](https://youtu.be/esOYhqevuqw?si=08e23K7dVP2rT1y2&t=532)
 - URL 기반으로 마이그레이션을 단계적으로 진행하는 전략을 사용했다.
-- 초기에는 Ruby 의 컨트롤러 함수를 1:1로 Next.js API 경로와 매핑하려 했으나 이 방법대신, 파일 기반 라우팅을 사용하는 방법으로 변경했다.
+- 초기에는 Ruby 의 Controller 함수를 1:1로 Next.js API 경로와 매핑하려 했으나 이 방법대신, 파일 기반 라우팅을 사용하는 방법으로 변경했다.
+  > Ruby on Rails 에서 라우팅은 일반적으로 Controller 와 Action 을 기반으로 설정한다.
+  > 즉, `routes.rb` 파일에 특정 URL 경로와 그에 대응하는 Controller 함수를 매핑하는 식이다.
+  > 이때, Controller 파일 안에는 여러 Action 들이 있고, 각 함수가 특정한 요청 (URL)과 연결되는 구조이다.
+  > 
+  > 한편, Next.js 에서는 **파일 기반 라우팅** 방식을 사용하므로, pages 폴더 내부에 파일을 생성하면, 파일명과 경로고 곧 서비스할 URL 로 연결된다.
+  >
+  > 그래서 마이그레이션 초기에는 RoR Controller 함수 하나하나를 api 경로로 만드려고 했는데, Next.js 파일 기반 라우팅 패턴이 편리하므로 이 패턴을 그대로 활용했다는 의미이다.
 <img width="2102" alt="스크린샷 2024-11-18 오후 8 24 35" src="https://github.com/user-attachments/assets/949481ee-9885-4e12-b467-218494a1c92c">
 
 ### 5. 서버 컴포넌트 활용의 어려움 [(10:00-11:14)](https://youtu.be/esOYhqevuqw?si=NsEDKnwu0lTOJX9a&t=601)
-- 자체 디자인 시스템이 Chakra UI 기반으로 제작되어 서버 측 렌더링과 호환되지 않는 문제점이 있었다.
-- 이와 같은 문제를 최대한 극복하기 위해 `'use client'` 지시문을 최대한 아래로 이동시키는 것을 목표로 했다.
+- 자체 디자인 시스템이 Chakra UI 기반으로 제작되어 있다보니, 서버 측 렌더링과 호환되지 않는 코드가 있다는 문제점이 있었다.
+- 그래서 client-side 에서 그려져야하는 코드는 `'use client'` 를 사용하되, 이 지시문을 최대한 아래로 이동시키는 것을 목표로 했다.
 - 아래 핑크색 원이 자체 디자인 시스템의 provider 이다.
 <img width="2093" alt="스크린샷 2024-11-18 오후 8 27 32" src="https://github.com/user-attachments/assets/c611a13f-1412-4777-bc92-d44ad2502ee4">
 
