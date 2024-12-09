@@ -41,8 +41,11 @@
 - **Loading, Suspense**: 데이터를 페칭해오는 동안 사용자에게 스켈레톤을 노출시켜 의미있는 UI를 제공했다.
 
 ### 7. Vercel Preview를 통한 협업 및 접근성 향상 [(12:24-14:08)](https://youtu.be/esOYhqevuqw?si=G6h018pSmzQF1Goe&t=744)
-- Vercel Preview를 통해 반복적인 개발 속도를 높이고 의사 결정 과정을 10배 단축하여 효율성을 극대화했다.
-- Vercel Preview를 활용하여 개발 담당자들과 접근성 컨설턴트 간의 협업을 강화하고 빠른 피드백을 통해 접근성을 크게 개선했다.
+- Vercel Preview
+  - 특정 브랜치나 PR이 업데이트될 때마다 자동으로 생성되는 미리보기용 URL
+  - 이 URL을 통해 해당 코드 변경 사항이 실제로 배포되었을 때 어떻게 동작하고 보일지를 미리 확인할 수 있다.
+- Vercel Preview를 통해 반복적인 개발 속도를 높이고 의사 결정 과정을 10배 단축하여 효율성을 극대화했고, 개발 담당자들과 접근성 컨설턴트 간의 빠른 피드백을 할 수 있게 해주어 접근성을 크게 개선했다고 한다.
+- [Vercel Preview 문서](https://vercel.com/docs/deployments/preview-deployments)
 
 ### 8. 향후 계획, Q&A [(14:08-)](https://youtu.be/esOYhqevuqw?si=Y5KQzMHrhkR5jsCs&t=848)
 - 향후 Next Image를 활용한 이미지 최적화를 할 계획.
