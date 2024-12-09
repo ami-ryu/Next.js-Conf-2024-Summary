@@ -14,7 +14,7 @@
 
 ### 3. Next.js 를 선택한 이유 [(7:08 - 8:52)](https://youtu.be/esOYhqevuqw?si=Izb_yJkYDxyoVKdY&t=428)
 - 가볍고, 쉽게 바로 사용 가능
-- 하이브리드 렌더링 지원
+- 하이브리드 렌더링 지원 (Static Generation + SSR)
 - Next.js 9~11 버전 개발 경험이 있는 개발자가 있었다.
 
 ### 4. Next.js 마이그레이션 단계 [(8:52 - 10:00)](https://youtu.be/esOYhqevuqw?si=08e23K7dVP2rT1y2&t=532)
