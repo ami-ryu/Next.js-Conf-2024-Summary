@@ -109,7 +109,7 @@ export default function Page() {
 }
 ```
 
-### 개선 결과
+## 최종 개선 결과
 - Performance: 100 score
 - First contentful paint: 3.1s → 0.2s
 <img width="434" alt="Screenshot 2024-12-08 at 5 10 18 PM" src="https://github.com/user-attachments/assets/0022047a-0591-4122-a076-c835344c0909">
